@@ -168,7 +168,8 @@ int menu() {
 					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 					cout << "Welcome to our Capstone Final Project. This project was inspired by early text based RNG\n";
 					cout << "dungeon games. In this game, you play as a young warrior that will go through a dungeon\n";
-					cout << "untold amounts of enemies; will you be able to make it to the end to save the princess?\n";
+					cout << "untold amounts of enemies; will you be able to make it to the end to clear the cave of the";
+					cout << " monstrocities?\n"
 					cout << "We shall see.....\n";
 					cout << "\n\nPress any button to go back > ";
 					cin >> classPage;
