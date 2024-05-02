@@ -53,7 +53,7 @@ int main() {
 	fin.close();
 	
 	Enemy * en1 = new Enemy(50, 2, false);
-	identifier = roll(0,1);
+	identifier = roll(0,2);
 	currSprite = sprites[identifier];
 	name = names[identifier];
 
