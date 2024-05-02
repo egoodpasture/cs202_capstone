@@ -34,30 +34,27 @@ int main() {
 
 	switch(chosenClass) {
 		case 0: 
-			health = 100;
-			numAttack = 1;
-			prof = 10;
-			heal = 5;
+			health = 100;numAttack = 1;prof = 10;heal = 5;
 			break;
 		case 1:
-			health = 75;
-			numAttack = 2;
-			prof = 3;
-			heal = 8;
+			health = 75;numAttack = 2;prof = 3;heal = 8;
 			break;
 		case 2:
-			health = 50;
-			numAttack = 1;
-			prof = 5;
-			heal = 12;
+			health = 50;numAttack = 1;prof = 5;heal = 12;
 			break;
-		default: return "";
+		default:
+			cout << "Invalid class selection" << endl;
+			exit(1);
+			break;
 	}
-
-	//meow
-	
 	// end player set up
 
+	health = fight(1, health, numAttack, prof, heal, sprites, names);
+
+	if (health > 0)
+		cout << "You won!\n";
+	else
+		cout << "shut up loser\n";
 	/*
 	cout << currSprite << endl;
 	cout << "Name: " << name << endl;
@@ -73,19 +70,62 @@ int main() {
 }
 
 int fight (int fightNum, int phealth, int numAtt, int pprof, int pheal, vector<string> sprites, vector<string> names) {
-	
+	int enemyMove;
+	string e;
+
 	// universal enemy set up
+	Enemy * enemy;
 	string ints[4] = {"attack", "defend", "heal", "buff"};
 	int identifier; //used to determine current sprite and enemy name
 	string currSprite, name;
 	// end universal enemy set up
 	
 	//based on fight number, roll identifier for sprite belonging to enemy level (i.e 0 or 1 for fight 1)
-	//identifier = roll(0,1);
-	
+	switch(fightNum) {
+		case 1:
+			identifier = roll(0,1);
+			enemy = new Enemy(50, 2, false);	
+			break;
+		case 2:
+			identifier = roll(2,3);
+			enemy = new Enemy(80, 3, false);	
+			break;
+		case 3:
+			identifier = roll(4,4);
+			enemy = new Enemy(105, 5, false);	
+			break;
+		default:
+			cout << "Invalid fight number" << endl;
+			exit(1);
+			break;
+	}
+
 	currSprite = sprites[identifier];
 	name = names[identifier];
-	//Enemy * en1 = new Enemy(50, 2, false);
+
+	do {
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; 
+		cout << "FIGHT " << fightNum << "\n_______\n\n";
+
+		cout << name << endl;
+		cout << "Health: ";
+		for (int i = 0 ; i < enemy->getHealth()/2 ; i++) 
+			cout << "[]" ;
+		cout << endl << endl;
+
+		cout << currSprite;
+		int intention = roll(1,3);
+		enemyMove = enemy->perform_intention(roll(), intention, identifier);
+
+		if (intention == 1)
+			cout << endl << name << " is planning to " << ints[intention-1] << " for " << enemyMove << " damage.\n";
+		else if (intention  > 1)
+			cout << endl << name << " is planning to " << ints[intention-1];
+
+		cout << "\n\nWhat will you do? Attack (a) or block (b)? ";
+		cin >> e;
+
+	} while (phealth > 0 || enemy->getHealth() > 0); 
 	
 	return phealth;
 }
@@ -139,8 +179,8 @@ int menu() {
 	bool settings = false, ready = false;
 	string start, classPage;
 
-	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-	cout << "                                                   Capstone Final                                 ";
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; 
+	cout << "                                                   Ascii Dungeon                                 ";
 	cout << "\n------------------------------------------------------------------------------------------------------------------------------";
 	cout << "\n                                                                                  ";
 	cout << "\nType start or quit > ";
@@ -148,7 +188,7 @@ int menu() {
 	
 	while (ready == false) {
 		settings = false;
-		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; 
 		cout << "                                                 Choose Your Warrior                             ";
 		cout << "\n------------------------------------------------------------------------------------------------------------------------------";
 		cout << "\n(1) Brute \n(2) Shinobi \n(3) Mage";
@@ -158,7 +198,7 @@ int menu() {
 		if (classPage == "i" || classPage == "i") {
 			while (settings == false) {
 
-				cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+				cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; 
 				cout << "                                                      Info                                        ";
 				cout << "\n------------------------------------------------------------------------------------------------------------------------------";
 				cout << "\n(1) What is this game? \n(2) How to play? \n(3) Brute Class \n(4) Shinobi Class \n(5) Mage Class";
@@ -167,18 +207,18 @@ int menu() {
 				cout << endl;
 				if (classPage == "b" || classPage == "B" || classPage == "Back" || classPage == "back") settings = true;
 				if (classPage == "1") {
-					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; 
 					cout << "Welcome to our Capstone Final Project. This project was inspired by early text based RNG\n";
 					cout << "dungeon games. In this game, you play as a young warrior that will go through a dungeon\n";
 					cout << "untold amounts of enemies; will you be able to make it to the end to clear the cave of the";
-					cout << " monstrocities?\n"
+					cout << " monstrocities?\n";
 					cout << "We shall see.....\n";
 					cout << "\n\nPress any button to go back > ";
 					cin >> classPage;
 					cout << endl;
 				}
 				if (classPage == "2") {
-					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; 
 					cout << "In this game, there are multiple crucial elements that every warrior must know in order";
 					cout << "\nto effectivly and safely survive the dungeon.";
 					cout << "\nFirstly, lets talk about who you are as a player in the dungeon. You as play can customize\n";
@@ -190,7 +230,7 @@ int menu() {
 					cout << "block, you will negate a certain amount of damage the enemy will do onto you (or even all of\n";
 					cout << "it if you're good enough), and if you heal, you will regenerate some of your health based\n";
 					cout << "on your healing factor. Now there is one more thing to discuss, your proficiency, this is\n";
-					cout << "a additive to your block and attack damage that will aide you in battle.\n"
+					cout << "a additive to your block and attack damage that will aide you in battle.\n";
 					cout << "\nWell now you are fully prepared to take on the adventure ahead of you. I'm counting that";
 					cout << " you will win!";
 					cout << "\n\nPress any button to go back > ";
@@ -198,7 +238,7 @@ int menu() {
 					cout << endl;
 				}
 				if (classPage == "3") {
-					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; 
 					cout << "This is the Brute Class. This class is able to take punches to the face without \nflinching";
 					cout << "; however, he isn't very bright and heals extremely slow.";
 					cout << "\n\nHealth = 100 \nAttacks per turn = 1 \nProficiency = 10 \nHealing Factor = 5";
@@ -207,7 +247,7 @@ int menu() {
 					cout << endl;
 				}
 				if (classPage == "4") {
-					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; 
 					cout << "This is the Shinobi Class. When you use this class you turn into a very agile and quick";
 					cout << " ninja able to land\nmultiple strikes sequentially. \nHowever, this comes at a cost of a";
 					cout << " mediocre health and healing factor";
@@ -217,7 +257,7 @@ int menu() {
 					cout << endl;
 				}
 				if (classPage == "5") {
-					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; 
 					cout << "This is the Mage Class. In this class you turn into a wise mage able to cast spells with";
 					cout << " great affect to\nboth attack the enemy and heal yourself. \nHowever it comes at the cost";
 					cout << " of you being physically weak to an enemy's attack.";
