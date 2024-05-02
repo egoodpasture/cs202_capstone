@@ -32,8 +32,27 @@ int main() {
 	int health, numAttack, prof, heal;
 	int chosenClass = menu();
 
-	// implement switch statement for classes
-	// set player stats
+	switch(chosenClass) {
+		case 0: 
+			health = 100;
+			numAttack = 1;
+			prof = 10;
+			heal = 5;
+			break;
+		case 1:
+			health = 75;
+			numAttack = 2;
+			prof = 3;
+			heal = 8;
+			break;
+		case 2:
+			health = 50;
+			numAttack = 1;
+			prof = 5;
+			heal = 12;
+			break;
+		default: return "";
+	}
 	
 	// end player set up
 
@@ -147,11 +166,10 @@ int menu() {
 				if (classPage == "b" || classPage == "B" || classPage == "Back" || classPage == "back") settings = true;
 				if (classPage == "1") {
 					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-					cout << "Welcome to Dungeon Slayer. This is a role-playing game inspired by D&D. In this game you";
-					cout << "\nwill explore multiple levels of a dungeon and having to defeat three major bosses";
-					cout << "\nthroughout the way. In this game, you will have to combine all your strategy and luck in";
-					cout << "\norder to complete all the stages presented before you. Do YOU have what it takes young";
-					cout << " warrior? We shall see...";
+					cout << "Welcome to our Capstone Final Project. This project was inspired by early text based RNG\n";
+					cout << "dungeon games. In this game, you play as a young warrior that will go through a dungeon\n";
+					cout << "untold amounts of enemies; will you be able to make it to the end to save the princess?\n";
+					cout << "We shall see.....\n";
 					cout << "\n\nPress any button to go back > ";
 					cin >> classPage;
 					cout << endl;
@@ -160,19 +178,16 @@ int menu() {
 					cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 					cout << "In this game, there are multiple crucial elements that every warrior must know in order";
 					cout << "\nto effectivly and safely survive the dungeon.";
-					cout << "\nFirstly we must talk about your turns. Each fight sequence is broken up into 2 turns, the";
-					cout << "\nplayer and the enemy. The player will have 2 possible chances to perform an action on";
-					cout << "\ntheir turn. If the action the player chooses succeeded, the second action is forfieted";
-					cout << "\nand the enemy will have their turn.";
-					cout << "\nNow lets talk about what actions you can take. There are two main actions you can choose";
-					cout << "\nfrom in any class: Attack and Defend. When you choose to attack, a 'dice' is rolled to";
-					cout << "\ndetermine if your attack was successful and rolls it against the enemies defence [and";
-					cout << "\nvice-versa]. If an attack is successful, another dice is rolled to see if you rolled a";
-					cout << "\ncritical hit which will deal more damage. If you choose defence as your action, then a";
-					cout << "\n'dice' will roll to see if you blocking will be successful. If the block is successful";
-					cout << "\nit will decrease the chance of your enemy's attack working by and will give you 5 - 15 HP";
-					cout << "\nback. There are also classes that can buff your base stats and give you an edge based on";
-					cout << "\nyour prefered playing style";
+					cout << "\nFirstly, lets talk about who you are as a player in the dungeon. You as play can customize\n";
+					cout << "yourself into three different classes: 'Brute', 'Shinobi', or 'Mage', and you can pick the\n";
+					cout << "best class to fit your play style on how you want to fight (and live). Another important part\n";
+					cout << "of the dungeon is how you will fight. When you see and opputunity to strike, you will be\n";
+					cout << "given three options on what to do: 'Attack', 'Block', or 'Heal'. The fight will respond to\n";
+					cout << "how you pick. If you pick attack, you will deal a random damage amount to the enemy, if you\n";
+					cout << "block, you will negate a certain amount of damage the enemy will do onto you (or even all of\n";
+					cout << "it if you're good enough), and if you heal, you will regenerate some of your health based\n";
+					cout << "on your healing factor. Now there is one more thing to discuss, your proficiency, this is\n";
+					cout << "a additive to your block and attack damage that will aide you in battle.\n"
 					cout << "\nWell now you are fully prepared to take on the adventure ahead of you. I'm counting that";
 					cout << " you will win!";
 					cout << "\n\nPress any button to go back > ";
