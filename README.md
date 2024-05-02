@@ -1,1 +1,1 @@
-# cs202_capstone
+read me ig
