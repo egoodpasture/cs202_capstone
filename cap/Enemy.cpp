@@ -11,7 +11,7 @@ Enemy::Enemy(int h, int prof, bool status) {
 }
 /*
 Enemy::~Enemy{
-	delete this;
+	delete *this;
 }*/
 
 int Enemy::getHealth() {
